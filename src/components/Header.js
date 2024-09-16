@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
         
     },
     title_2: {
-        color: "blue",
+        color: "white",
         fontWeight: "bold",
         cursor: "pointer",
 
@@ -61,7 +61,7 @@ const Header = () => {
 
                         <div className = {classes.title_2}>
                             <Typography onClick={handleClick} variant = "h6">
-                                TO THE MOON 
+                                Real Cryptosis
                             </Typography>
                         </div>
                         <div>
@@ -72,7 +72,6 @@ const Header = () => {
                             height: 40, 
                             position: 'fixed',
                             top: 10,
-                            right: 15,
                             }}
                             value = {currency}
                             onChange = {(e) => setCurrency (e.target.value)}
