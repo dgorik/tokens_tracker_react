@@ -7,24 +7,20 @@ import { CryptoState } from '../CryptoContext';
 const useStyles = makeStyles(() => ({
     title_1: {
         color: "gold",
-        fontFamily: "Roboto",
         fontWeight: "bold",
         cursor: "pointer",
-        marginRight: "10px",
         
     },
     title_2: {
         color: "blue",
-        fontFamily: "Roboto",
         fontWeight: "bold",
         cursor: "pointer",
 
     },
     header: {
         display: "flex",
-        justifyContent: 'center',
-        flexDirection: "row",
-        color: "blue",
+        justifyContent: "space-between",
+        width: '100%'
     }
 }))
 
@@ -68,6 +64,7 @@ const Header = () => {
                                 TO THE MOON 
                             </Typography>
                         </div>
+                        <div>
                         <Select variant = "outlined"
                             style = {{
                             color: "white",
@@ -83,6 +80,9 @@ const Header = () => {
                             <MenuItem value = {'USD'}> USD </MenuItem>
                             <MenuItem value = {'EUR'}> EUR </MenuItem>
                         </Select>
+
+                        </div>
+                        
                     </div>
                         
                     </Toolbar>

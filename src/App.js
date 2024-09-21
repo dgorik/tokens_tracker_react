@@ -22,7 +22,7 @@ function App() {
     <BrowserRouter>
       <div className={classes.App}>
         <nav >
-          <h1> {<Header />}</h1>
+          {<Header />}
           <Link to= "/" Header> </Link>
           <Link to= "/" Homepage> </Link>
           <Link to= "/coins/:id" Coinpage> </Link>
