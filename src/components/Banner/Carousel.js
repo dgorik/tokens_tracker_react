@@ -12,8 +12,20 @@ const useStyles = makeStyles(() => ({
        height: "50%", 
        display: "flex",
        alignItems: "center",
+    },
+    carouselItem: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    price: {
+        color: "red"
     }
 }))
+
+export function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
 
 const Carousel = () => {
@@ -30,7 +42,8 @@ const fetchTrendingCoins = async () => {
     setTrending(data)
 }
 
-console.log(trending)
+
+
 useEffect(() => {
     fetchTrendingCoins();
 },[currency])
@@ -51,8 +64,8 @@ const items = trending.map((coin) => {
             <span>
                 {profit && "+"} {coin?.price_change_percentage_24h.toFixed(2)} {"%"}
             </span>
-            <span>
-                {symbol} {coin?.current_price}
+            <span className = {classes.price}>
+                {symbol} {numberWithCommas(coin?.current_price.toFixed(2))}
             </span>
         </Link>
     )
