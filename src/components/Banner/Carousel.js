@@ -17,9 +17,10 @@ const useStyles = makeStyles(() => ({
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+      color:"white"
     },
     price: {
-        color: "red"
+        fontWeight: "bold"
     }
 }))
 
@@ -59,10 +60,13 @@ const items = trending.map((coin) => {
             style = {{marginBottom: 10}}>
             </img>
             <span>
-                {coin?.symbol}
-            </span>
-            <span>
-                {profit && "+"} {coin?.price_change_percentage_24h.toFixed(2)} {"%"}
+                {coin?.symbol.toUpperCase()}
+                <span
+                style ={{
+                    color: profit > 0? "green": "red"
+                }}>
+                   {profit && "+"} {coin?.price_change_percentage_24h.toFixed(2)} {"%"}
+                </span>
             </span>
             <span className = {classes.price}>
                 {symbol} {numberWithCommas(coin?.current_price.toFixed(2))}
