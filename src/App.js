@@ -7,7 +7,7 @@ import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles (() => ({
   App: {
-    backgroundColor: "black",
+    backgroundColor: "#171717",
     color: "white",
     minHeight: "100vh"
   }
@@ -24,11 +24,11 @@ function App() {
         <nav >
           <h1> {<Header />}</h1>
           <Link to= "/" Header> </Link>
-          <Link to= "/coins" Homepage> </Link>
+          <Link to= "/" Homepage> </Link>
           <Link to= "/coins/:id" Coinpage> </Link>
         </nav>
           <Routes>
-            <Route path = '/coins' element = {<Homepage />}/>
+            <Route path = '/' element = {<Homepage />}/>
             <Route path = '/coins/:id' element = {<Coinpage />} />
           </Routes>
       
