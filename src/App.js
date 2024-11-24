@@ -22,13 +22,12 @@ function App() {
     <BrowserRouter>
       <div className={classes.App}>
         <nav >
-          <h1> This React Routing thing is pretty cool</h1>
+          <h1> {<Header />}</h1>
           <Link to= "/" Header> </Link>
           <Link to= "/coins" Homepage> </Link>
           <Link to= "/coins/:id" Coinpage> </Link>
         </nav>
           <Routes>
-            <Route path = '/' element={<Header />}/>
             <Route path = '/coins' element = {<Homepage />}/>
             <Route path = '/coins/:id' element = {<Coinpage />} />
           </Routes>
