@@ -1,6 +1,6 @@
-import { Container} from '@mui/material';
+import { Container, Typography} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import React from 'react'
+import Carousel from "./Carousel";
 
 const useStyles = makeStyles(() => ({
     banner:{
@@ -11,7 +11,14 @@ const useStyles = makeStyles(() => ({
        display: "flex",
        flexDirection: "column",
        paddingTop: 25,
-       justifycontent: "space-around"
+       justifyContent: "center",
+    },
+    tagline: {
+      display: "flex",
+      height: "40%",
+      flexDirection: "column",
+      paddingTop: 25, 
+      justifyContent: "space-around"
     }
 }))
 
@@ -22,6 +29,28 @@ const Banner = () => {
   return (
     <div className = {classes.banner}>
       <Container className = {classes.bannerContent}>
+        <div className = {classes.tagline}>
+        <Typography
+          variant = "h2"
+          style = {{
+            fontWeight: "bold", 
+            marginBottom: 15, 
+            fontFamily: "Poppins",
+          }}
+          >
+            Crypto Hunter
+        </Typography>
+        <Typography
+        variant = "subtitle"
+          style = {{
+            color: "darkgrey",
+            fontFamily: "Poppins"
+          }}
+          >
+          Get the latest data about your favorite cryptocurrency
+        </Typography>
+        </div>
+        <Carousel />
       </Container>
     </div>
   )
