@@ -50,12 +50,12 @@ useEffect(() => {
 },[currency])
 
 const items = trending.map((coin) => {
-    let profit = coin.price_change_percentage_24h >= 0 //this is returns a sign depending on whether a profit is negative or positive
+    let profit = coin?.price_change_percentage_24h >= 0 //this is returns a sign depending on whether a profit is negative or positive
     return (
-        <Link className = {classes.carouselItem} to = {`/coins/${coin.id}`}>
+        <Link className = {classes.carouselItem} to = {`/coins/${coin?.id}`}>
             <img
             src={coin?.image}
-            alt={coin.name}
+            alt={coin?.name}
             height = "80"
             style = {{marginBottom: 10}}>
             </img>
@@ -63,7 +63,8 @@ const items = trending.map((coin) => {
                 {coin?.symbol.toUpperCase()}
                 <span
                 style ={{
-                    color: profit > 0? "green": "red"
+                    color: profit > 0? "green": "red",
+                    font: 500,
                 }}>
                    {profit && "+"} {coin?.price_change_percentage_24h.toFixed(2)} {"%"}
                 </span>
