@@ -11,6 +11,12 @@ const useStyles = makeStyles(() => ({
         fontWeight: "bold",
         cursor: "pointer"
     },
+    header: {
+        display: "flex",
+        justifyContent: 'space-around',
+        flexDirection: "row",
+        color: "blue"
+    }
 }))
 
 const Header = () => {
@@ -41,11 +47,18 @@ const Header = () => {
             <AppBar color = "transparent" position = "static">
                 <Container>
                     <Toolbar>
-                    <div className = {classes.title}>
-                        <Typography onClick={handleClick} variant = "h6">
-                            CryptoTracker
-                        </Typography>
-                    </div>
+                    <div className= {classes.header}>
+                        <div className = {classes.title}>
+                            <Typography onClick={handleClick} variant = "h6">
+                                CryptoTracker
+                            </Typography>
+                        </div>
+
+                        <div className = {classes.title}>
+                            <Typography onClick={handleClick} variant = "h6">
+                                TO THE MOOOON 
+                            </Typography>
+                        </div>
                         <Select variant = "outlined"
                             style = {{
                             color: "white",
@@ -61,6 +74,8 @@ const Header = () => {
                             <MenuItem value = {'USD'}> USD </MenuItem>
                             <MenuItem value = {'EUR'}> EUR </MenuItem>
                         </Select>
+                    </div>
+                        
                     </Toolbar>
                 </Container>
             </AppBar>

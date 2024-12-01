@@ -104,7 +104,7 @@ export default function CoinsTable() {
                                         >
                                          <TableCell component = "th" scope = "row"
                                             style = {{
-                                              display: "flex", 
+                                              display: "flex",
                                               gap: 15,
                                             }}
                                           >
@@ -114,6 +114,12 @@ export default function CoinsTable() {
                                               height = "50"
                                               style = {{marginBottom: 10}}
                                             />
+                                            <span style = {{
+                                              width: "5px", 
+                                              color: "white"
+                                            }}>
+                                                {row?.symbol.toUpperCase()}
+                                            </span>
                                             
                                          </TableCell>   
                                       </TableRow>
