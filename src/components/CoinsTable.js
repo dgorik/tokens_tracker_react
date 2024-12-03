@@ -13,24 +13,18 @@ export default function CoinsTable() {
 
   const {currency, symbol} = CryptoState()
 
-  const useStyles = makeStyles(() => ({
-    title: {
-        color: "gold",
-        fontFamily: "Roboto",
-        fontWeight: "bold",
-        cursor: "pointer"
-    },
-    row: {
-      backgroundColor: "#16171a",
-      cursor: "pointer",
-      "&:hover": {
-        backgroundColor: "#131111",
-      },
-      fontFamily: "Poppins",
-    },
-  }))
+  // const useStyles = makeStyles(() => ({
+  //   row: {
+  //     backgroundColor: "#16171a",
+  //     cursor: "pointer",
+  //   },
+  //   pagination: {
+  //     backgroundColor: "white",
+  //   },
 
-  const classes = useStyles()
+  // }));
+
+  // const classes = useStyles()
   const navigate = useNavigate()
 
   const darkTheme = createTheme({
@@ -92,7 +86,7 @@ export default function CoinsTable() {
                                         color: "black"
                                       }}
                                       key = {head}
-                                      align={head === "Coin" ? "" : "right"}
+                                      //align={head === "Coin" ? "" : "right"}
                                     >
                                       {head}
                                     </TableCell>
@@ -105,7 +99,7 @@ export default function CoinsTable() {
                                     return  (
                                       <TableRow
                                         onClick = {() => navigate(`/coins/${row.id}`)}
-                                        className = {classes.row}
+                                        // className = {classes.row}
                                         key = {row.name}
                                         >
                                          <TableCell component = "th" scope = "row"

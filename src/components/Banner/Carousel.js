@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import makeStyles from '@mui/styles/makeStyles';
 import axios from 'axios';
 import {TrendingCoins} from '../../config/api'
 import { CryptoState } from '../../CryptoContext';
-import { useState } from 'react';
 import {Link} from 'react-router-dom'
 import AliceCarousel from 'react-alice-carousel';
 
@@ -42,7 +41,6 @@ const fetchTrendingCoins = async () => {
 
     setTrending(data)
 }
-
 
 
 useEffect(() => {

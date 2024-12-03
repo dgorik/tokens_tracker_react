@@ -8,8 +8,8 @@ const CryptoContext = ( {children}) => {
   const [symbol, setSymbol] = useState("$")
 
   useEffect(() => {
-    if(currency == "EUR") setSymbol("€")
-    else if(currency == "USD") setSymbol("$")
+    if(currency === "EUR") setSymbol("€")
+    else if(currency === "USD") setSymbol("$")
   },[currency])
 
 
