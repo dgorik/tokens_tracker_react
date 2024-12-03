@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import {CryptoState} from "../CryptoContext"
 import {SingleCoin} from "../config/api"
 import CoinInfo from "../components/CoinInfo"
+import { Typography } from '@mui/material'
 
 const Coinpage = () => {
 
@@ -30,9 +31,19 @@ const Coinpage = () => {
      <CoinInfo/>
 
      <img
-      src = {coin?.image.small}
+      src = {coin?.image.large}
       alt = {coin?.name}
+      height = "200"
+      style = {{marginBottom: 20}}
      />
+     <Typography variant ="h3">
+      {coin?.name}
+     </Typography>
+     <Typography variant ="span">
+      {coin?.description.en.split(".").splice(0,2)}
+     </Typography>
+  
+  
     </div>
   )
 }
