@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react'
+import makeStyles from '@mui/styles/makeStyles';
 import { createTheme, LinearProgress, TableContainer, TableHead, Table, TableRow, TextField, ThemeProvider, Container, Typography, TableCell, TableBody} from '@mui/material';
 import { CoinList } from '../config/api'
 import {CryptoState} from "../CryptoContext"
 import { useNavigate } from 'react-router-dom';
-//import Carousel from "./Banner/Carousel";
 import { numberWithCommas } from './Banner/Carousel';
-import makeStyles from '@mui/styles/makeStyles';
 import axios from 'axios';
 
 export default function CoinsTable() {
@@ -15,19 +14,16 @@ export default function CoinsTable() {
 
   const {currency, symbol} = CryptoState()
 
-  // const useStyles = makeStyles(() => ({
-  //   row: {
-  //     backgroundColor: "#16171a",
-  //     cursor: "pointer",
-  //   },
-  //   pagination: {
-  //     backgroundColor: "white",
-  //   },
+  const useStyles = makeStyles(() => ({
+    row: {
+      backgroundColor: "#16171a",
+      cursor: "pointer",
+    }
 
-  // }));
+  }));
 
-  // const classes = useStyles()
   const navigate = useNavigate()
+  const classes = useStyles()
 
   const darkTheme = createTheme({
     palette: {
@@ -70,6 +66,17 @@ export default function CoinsTable() {
           <TextField
             label = "Search For a Crypto Currency.." 
             variant = "outlined"
+            sx = {{
+              "& .MuiOutlinedInput-root": {
+                  color: "white",
+                  fontFamily: "Arial",
+                  fontWeight: "bold",
+              },
+              "& .MuiInputLabel-outlined": {
+                  color: "#2e2e2e",
+                  fontWeight: "bold",
+            },
+            }}
             style = {{ textAlign: "center", width: "100%"}}
             onChange = {(e) => setSearch(e.target.value)}
             
@@ -97,7 +104,7 @@ export default function CoinsTable() {
                             </TableHead>
                                   <TableBody>{handleSearch().map((row) => {
                                     const profit = row.price_change_percentage_24h > 0;
-                                    const market_cap = row.market_cap
+
                                     return  (
                                       <TableRow
                                         onClick = {() => navigate(`/coins/${row.id}`)}
@@ -128,14 +135,14 @@ export default function CoinsTable() {
 
                                          <TableCell>
                                           <div style = {{color: "white"}}>
-                                            {symbol} {numberWithCommas(row.current_price)}
+                                            {symbol} {numberWithCommas(row.current_price.toFixed(2))}
                                           </div>
                                          </TableCell>
 
-                                         <TableCell>
-                                          <div style = {{color: "white"}}>
-                                          {symbol} {numberWithCommas(row.price_change_24h.toFixed(2))}
-                                          </div>
+                                         <TableCell style = {{ color: profit > 0 ? "green" : "red"}}>
+                                          
+                                          {symbol} {numberWithCommas(row.price_change_24h.toFixed(3))}
+                                          
                                          </TableCell>
 
                                          <TableCell>

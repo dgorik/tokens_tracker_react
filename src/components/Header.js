@@ -5,11 +5,19 @@ import makeStyles from '@mui/styles/makeStyles';
 import { CryptoState } from '../CryptoContext';
 
 const useStyles = makeStyles(() => ({
-    title: {
+    title_1: {
         color: "gold",
         fontFamily: "Roboto",
         fontWeight: "bold",
-        cursor: "pointer"
+        cursor: "pointer",
+        marginRight: "10px",
+        
+    },
+    title_2: {
+        color: "blue",
+        fontFamily: "Roboto",
+        fontWeight: "bold",
+        cursor: "pointer",
     },
     header: {
         display: "flex",
@@ -48,13 +56,13 @@ const Header = () => {
                 <Container>
                     <Toolbar>
                     <div className= {classes.header}>
-                        <div className = {classes.title}>
+                        <div className = {classes.title_1}>
                             <Typography onClick={handleClick} variant = "h6">
                                 CryptoTracker
                             </Typography>
                         </div>
 
-                        <div className = {classes.title}>
+                        <div className = {classes.title_2}>
                             <Typography onClick={handleClick} variant = "h6">
                                 TO THE MOOOON 
                             </Typography>

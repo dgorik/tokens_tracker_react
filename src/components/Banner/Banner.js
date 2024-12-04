@@ -2,7 +2,7 @@ import { Container, Typography} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import Carousel from "./Carousel";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
     banner:{
         backgroundImage: "url(./banner_background.jpg)",
     },
@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
       paddingTop: 25, 
       justifyContent: "space-around"
     }
-}))
+})
 
 const Banner = () => {
   

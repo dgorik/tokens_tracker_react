@@ -7,11 +7,11 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  
     <CryptoContext>
       <App />
     </CryptoContext>
-  </React.StrictMode>
+ 
 );
 
 // If you want to start measuring performance in your app, pass a function
