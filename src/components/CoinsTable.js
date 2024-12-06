@@ -134,9 +134,17 @@ export default function CoinsTable() {
 
                                          <TableCell>
                                           <div style = {{color: "white"}}>
-                                          {symbol} {numberWithCommas(market_cap)}
+                                          {symbol} {numberWithCommas(row.price_change_24h.toFixed(2))}
                                           </div>
                                          </TableCell>
+
+                                         <TableCell>
+                                          <div style = {{color: "white"}}>
+                                          {symbol} {numberWithCommas(row.market_cap)}
+                                          </div>
+                                         </TableCell>
+
+                                         
 
                                       </TableRow>
                                     )
