@@ -3,6 +3,8 @@ import { createTheme, LinearProgress, TableContainer, TableHead, Table, TableRow
 import { CoinList } from '../config/api'
 import {CryptoState} from "../CryptoContext"
 import { useNavigate } from 'react-router-dom';
+//import Carousel from "./Banner/Carousel";
+import { numberWithCommas } from './Banner/Carousel';
 import makeStyles from '@mui/styles/makeStyles';
 import axios from 'axios';
 
@@ -95,7 +97,7 @@ export default function CoinsTable() {
                             </TableHead>
                                   <TableBody>{handleSearch().map((row) => {
                                     const profit = row.price_change_percentage_24h > 0;
-
+                                    const market_cap = row.market_cap
                                     return  (
                                       <TableRow
                                         onClick = {() => navigate(`/coins/${row.id}`)}
@@ -114,6 +116,7 @@ export default function CoinsTable() {
                                               height = "50"
                                               style = {{marginBottom: 10}}
                                             />
+
                                             <span style = {{
                                               width: "5px", 
                                               color: "white"
@@ -121,7 +124,20 @@ export default function CoinsTable() {
                                                 {row?.symbol.toUpperCase()}
                                             </span>
                                             
-                                         </TableCell>   
+                                         </TableCell>
+
+                                         <TableCell>
+                                          <div style = {{color: "white"}}>
+                                            {symbol} {numberWithCommas(row.current_price)}
+                                          </div>
+                                         </TableCell>
+
+                                         <TableCell>
+                                          <div style = {{color: "white"}}>
+                                          {symbol} {numberWithCommas(market_cap)}
+                                          </div>
+                                         </TableCell>
+
                                       </TableRow>
                                     )
                                   })}
