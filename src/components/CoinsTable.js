@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
-import { createTheme, LinearProgress, TableContainer, TableHead, Table, TableRow, TextField, ThemeProvider, Container, Typography, TableCell, TableBody} from '@mui/material';
+import { createTheme, LinearProgress, TableContainer, TableHead, Table, TableRow, TextField, ThemeProvider, Container, Typography, TableCell, TableBody, Pagination} from '@mui/material';
 import { CoinList } from '../config/api'
 import {CryptoState} from "../CryptoContext"
 import { useNavigate } from 'react-router-dom';
@@ -12,14 +12,24 @@ export default function CoinsTable() {
   const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState("")
 
+  const [page, setPage] = useState(1)
+
   const {currency, symbol} = CryptoState()
 
   const useStyles = makeStyles(() => ({
     row: {
       backgroundColor: "#16171a",
       cursor: "pointer",
+      "&:hover": {
+        backgroundColor: "#B8B8B8"
+      }
+    },
+    pagination: {
+      "& .MuiPaginationItem-root": {
+        color: "white",
+        fontWeight: "bold"
+      },
     }
-
   }));
 
   const navigate = useNavigate()
@@ -38,7 +48,6 @@ export default function CoinsTable() {
 
     setLoading(true)
     const {data} = await axios.get(CoinList(currency))
-    console.log(data)
     setCoins(data)
     setLoading(false)
 
@@ -102,13 +111,13 @@ export default function CoinsTable() {
                                   ))}
                               </TableRow>
                             </TableHead>
-                                  <TableBody>{handleSearch().map((row) => {
+                                  <TableBody>{handleSearch().slice((page - 1) * 10, (page - 1) * 10 + 10).map((row) => {
                                     const profit = row.price_change_percentage_24h > 0;
 
                                     return  (
                                       <TableRow
                                         onClick = {() => navigate(`/coins/${row.id}`)}
-                                        // className = {classes.row}
+                                        className = {classes.row}
                                         key = {row.name}
                                         >
                                          <TableCell component = "th" scope = "row"
@@ -161,6 +170,23 @@ export default function CoinsTable() {
                   )
                 }
             </TableContainer>
+
+            <Pagination
+              classes= {{ul: classes.pagination}}
+              style = {{
+                display: "flex",
+                justifyContent: "center",
+              }}
+              count = {(handleSearch()?.length / 10).toFixed(0)}
+              onChange = {(_, value) => {
+                setPage(value)
+                window.scroll({
+                  top: 100,
+                  left: 100,
+                  behavior: "smooth",
+                })
+              }}
+            />
 
         </Container>
     </ThemeProvider>

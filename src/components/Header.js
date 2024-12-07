@@ -18,12 +18,13 @@ const useStyles = makeStyles(() => ({
         fontFamily: "Roboto",
         fontWeight: "bold",
         cursor: "pointer",
+
     },
     header: {
         display: "flex",
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         flexDirection: "row",
-        color: "blue"
+        color: "blue",
     }
 }))
 
@@ -64,7 +65,7 @@ const Header = () => {
 
                         <div className = {classes.title_2}>
                             <Typography onClick={handleClick} variant = "h6">
-                                TO THE MOOOON 
+                                TO THE MOON 
                             </Typography>
                         </div>
                         <Select variant = "outlined"
