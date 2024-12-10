@@ -1,6 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
+import {CryptoState} from '../CryptoContext'
 
 const CoinInfo = () => {
+
+    const [historicalData, setState] = useState()
+    const [days, setDays] = useState(1)
+
+    const {} = CryptoState()
+
     return (
         <div>
             CoinInfo
