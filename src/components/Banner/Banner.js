@@ -12,6 +12,7 @@ const useStyles = makeStyles(() => ({
        flexDirection: "column",
        paddingTop: 25,
        justifyContent: "center",
+       alignItems: "center"
     },
     tagline: {
       display: "flex",
@@ -43,7 +44,7 @@ const Banner = () => {
         <Typography
         variant = "subtitle"
           style = {{
-            color: "darkgrey",
+            color: "gold",
             fontFamily: "Poppins"
           }}
           >

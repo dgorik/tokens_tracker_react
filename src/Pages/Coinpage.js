@@ -17,8 +17,6 @@ const Coinpage = () => {
 
   const fetchCoin = async() => {
     const {data} = await axios.get(SingleCoin(id))
-    console.log(data)
-
     setCoin(data)
   }
 
@@ -118,6 +116,7 @@ const Coinpage = () => {
 
         </div>
       </div>
+      <CoinInfo coin= {coin} />
     </div>
   )
 }
