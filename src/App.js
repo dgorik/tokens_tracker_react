@@ -9,7 +9,7 @@ const useStyles = makeStyles (() => ({
   App: {
     backgroundColor: "#2E2E2E",
     color: "white",
-    minHeight: "100vh"
+    minHeight: "100vh",
   }
 }))
 

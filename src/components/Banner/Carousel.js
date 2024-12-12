@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
        height: "50%", 
        display: "flex",
        alignItems: "center",
+       width: "100%"
     },
     carouselItem: {
       display: "flex",
@@ -42,7 +43,7 @@ useEffect(() => {
     
         setTrending(data)
     }
-    
+
     fetchTrendingCoins();
 },[currency])
 
