@@ -6,7 +6,13 @@ import { HistoricalChart} from '../config/api'
 import { ThemeProvider} from "styled-components";
 import { CircularProgress, createTheme, Typography } from "@mui/material";
 import { chartDays } from "../config/data";
+import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2"
+import { CategoryScale } from "chart.js";
+import { Margin } from "@mui/icons-material";
+import SelectButton from "./SelectButton";
+
+Chart.register(CategoryScale);
 
 const CoinInfo = ({coin}) => {
 
@@ -22,6 +28,20 @@ const CoinInfo = ({coin}) => {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center"
+        },
+        button_position : {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+            width: '100%'
+        },
+        button_style : {
+            padding: 10, 
+            marginLeft: 10, 
+            backgroundColor: "gold", 
+            fontWeight: "bold",
+            borderWidth: "0",
+            borderRadius: "7px"
         }
     }))
 
@@ -62,13 +82,34 @@ const CoinInfo = ({coin}) => {
                     data = {{
                         labels: historicData?.map((coin) => {
                             let date = new Date(coin[0]);
-                            let time = date.getHours()
+                            let time = date.getHours() < 12? `${date.getHours()} AM`: `${date.getHours() - 12} PM`
+                            return days === 1? time: date.toLocaleDateString()
                         }),
                         datasets: [
-                            {data: historicData.map((coin) => coin[1])}
+                            {
+                                data: historicData?.map((coin) => coin[1]),
+                                label:`Price in the past ${days} Days`,
+                                borderColor: "green",
+                                pointRadius: 1,
+                            } 
+
                         ]
                     }}
                 />
+                <div className = {classes.button_position}> 
+                    {chartDays.map((day) =>(
+                    <SelectButton
+                        key = {day.value}
+                        onClick = {() => {
+                            setDays(day.value)
+                            setflag(false);
+                        }}
+                        selected = {day.value === days}
+                    >
+                    {day.label}
+                    </SelectButton>
+                ))}
+                </div>
                 </>
                 )}
             </div>
