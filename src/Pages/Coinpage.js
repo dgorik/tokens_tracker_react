@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import makeStyles from '@mui/styles/makeStyles';
+import Chart from "chart.js/auto";
+import { CategoryScale } from "chart.js";
 import { useParams } from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import {CryptoState} from "../CryptoContext"
@@ -8,6 +10,8 @@ import {SingleCoin} from "../config/api"
 import CoinInfo from "../components/CoinInfo"
 import { LinearProgress, Typography } from '@mui/material'
 import { numberWithCommas } from '../components/Banner/Carousel';
+
+Chart.register(CategoryScale);
 
 const Coinpage = () => {
 
