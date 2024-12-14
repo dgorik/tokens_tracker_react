@@ -11,9 +11,9 @@ import { numberWithCommas } from '../components/Banner/Carousel';
 
 const Coinpage = () => {
 
-  const {id} = useParams()
   const [coin, setCoin] = useState()
   const {currency, symbol} = CryptoState()
+  const {id} = useParams()
 
   useEffect(() => {
     const fetchCoin = async() => {

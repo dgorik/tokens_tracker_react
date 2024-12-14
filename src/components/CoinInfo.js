@@ -4,7 +4,7 @@ import {CryptoState} from '../CryptoContext'
 import axios from 'axios';
 import { HistoricalChart} from '../config/api'
 import { ThemeProvider} from "styled-components";
-import { CircularProgress, createTheme, Typography } from "@mui/material";
+import { CircularProgress, createTheme} from "@mui/material";
 import { chartDays } from "../config/data";
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2"
@@ -62,7 +62,7 @@ const CoinInfo = ({coin}) => {
             setflag(true);
             setHistoricData(data.prices)
         }
-        
+
         fetchHistoricData();
     }, [days]);
 
