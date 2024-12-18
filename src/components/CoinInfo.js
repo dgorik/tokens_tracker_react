@@ -9,7 +9,6 @@ import { chartDays } from "../config/data";
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2"
 import { CategoryScale } from "chart.js";
-import { Margin } from "@mui/icons-material";
 import SelectButton from "./SelectButton";
 
 Chart.register(CategoryScale);
@@ -56,13 +55,14 @@ const CoinInfo = ({coin}) => {
         },
       });
 
-    const fetchHistoricData = async () => {
-        const {data} = await axios.get(HistoricalChart(coin.id, days, currency))
-        setflag(true);
-        setHistoricData(data.prices)
-    }
 
     useEffect(() => {
+        const fetchHistoricData = async () => {
+            const {data} = await axios.get(HistoricalChart(coin.id, days, currency))
+            setflag(true);
+            setHistoricData(data.prices)
+        }
+        
         fetchHistoricData();
     }, [days]);
 

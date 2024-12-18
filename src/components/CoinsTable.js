@@ -44,16 +44,15 @@ export default function CoinsTable() {
     }
   })
 
-  const fetchCoins = async () => {
-
-    setLoading(true)
-    const {data} = await axios.get(CoinList(currency))
-    setCoins(data)
-    setLoading(false)
-
-  }
-
   useEffect(() => {
+    const fetchCoins = async () => {
+
+      setLoading(true)
+      const {data} = await axios.get(CoinList(currency))
+      setCoins(data)
+      setLoading(false)
+  
+    }  
     fetchCoins()
   },[currency])
 
