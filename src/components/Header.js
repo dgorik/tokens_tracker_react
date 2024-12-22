@@ -26,16 +26,16 @@ const useStyles = makeStyles(() => ({
 
 const Header = () => {
 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); //we are using a useNavigate hook to create a navigate function that we can use to navigate to a different page
 
-    const classes = useStyles();
+    const classes = useStyles(); //it's a material UI hook for styling components
 
     const {currency, setCurrency} = CryptoState()
 
     const darkTheme = createTheme({
         palette: {
             primary: {
-                main: "#fff"
+                main: "#ffff"
             },
             type: "dark"
         }

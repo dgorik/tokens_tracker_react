@@ -1,3 +1,5 @@
+//this file is the entry point of the application for the server and contains the logic of the server. This is what we are rendering to the screen.
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
