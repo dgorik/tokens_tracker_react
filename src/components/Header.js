@@ -30,7 +30,7 @@ const Header = () => {
 
     const classes = useStyles(); //it's a material UI hook for styling components
 
-    const {currency, setCurrency} = CryptoState()
+    const {currency, setCurrency} = CryptoState() //here we are distructuring the values returned by a CryptoState
 
     const darkTheme = createTheme({
         palette: {
