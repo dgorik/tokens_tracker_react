@@ -16,7 +16,7 @@ const CryptoContext = ( {children}) => { //we are defining a component that prov
     <Crypto.Provider value = {{currency, symbol, setCurrency}}> 
         {children}
     </Crypto.Provider>
-  ) //value prop defines the data that the context provides
+  ) //value prop defines the data that the context sends to other components (this makes these values accessible everywhere inside of our application)
   //children represents any child component passed to crypto context
 }
 

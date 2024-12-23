@@ -77,7 +77,6 @@ const CoinInfo = ({coin}) => {
                     />
                 ) : ( 
                 <>
-                {console.log(historicData)}
                 <Line
                     data = {{
                         labels: historicData?.map((coin) => {

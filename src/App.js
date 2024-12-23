@@ -1,6 +1,6 @@
 //this is the top component of the application. App.js represents the main/top component of the application.
 
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom" // react-router-dom is library that enable routing. This library allows us to define routes.
+import { BrowserRouter, Routes, Route} from "react-router-dom" // react-router-dom is library that enable routing. This library allows us to define routes.
 import './App.css';
 import Header from './components/Header'
 import Homepage from "./Pages/Homepage";
@@ -25,8 +25,6 @@ function App() {
       <div className={classes.App}>
         <nav >
           {<Header />}
-          <NavLink to= "/" Homepage> </NavLink> 
-          <NavLink to= "/coins/:id" Coinpage> </NavLink>
         </nav> 
           <Routes>
             <Route path = '/' element = {<Homepage />}/>
