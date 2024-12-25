@@ -136,7 +136,6 @@ export default function CoinsTable() {
                                               flexDirection: "column"
                                             }}> 
                                               <span style = {{
-                                                
                                                 width: "5px", 
                                                 color: "white"
                                               }}>

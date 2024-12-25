@@ -46,7 +46,8 @@ const Banner = () => {
         variant = "subtitle"
           style = {{
             color: "gold",
-            fontFamily: "Poppins"
+            fontFamily: "Poppins", 
+            fontWeight: "bold"
           }}
           >
           Get the latest data about your favorite cryptocurrency
