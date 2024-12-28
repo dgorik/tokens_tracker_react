@@ -64,8 +64,9 @@ export default function CoinsTable() {
     )
   }
 
-  function percentage(total_supply, total_volume){
-      return parseInt(total_volume) / parseInt(total_supply)
+  function percentage(circulating, supply){
+      var percentage = Math.ceil(circulating / supply * 100 )
+      return percentage === 100? "Unlimited": percentage + "%"
   }
 
   return (
@@ -175,7 +176,7 @@ export default function CoinsTable() {
                                           </TableCell>
                                           <TableCell>
                                             <div style = {{color: "white"}}>
-                                            {percentage(row.total_volume, row.total_supply)}
+                                            {percentage(row.circulating_supply, row.total_supply)}
                                             </div>
                                           </TableCell>
 
