@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import parse from 'html-react-parser';
 import makeStyles from '@mui/styles/makeStyles';
 import { useParams } from 'react-router-dom'
 import {useState, useEffect} from 'react'
@@ -17,11 +17,12 @@ const Coinpage = () => {
 
   useEffect(() => {
     const fetchCoin = async() => {
-      const {data} = await axios.get(SingleCoin(id))
-      setCoin(data)
+      fetch(SingleCoin(id))
+      .then(res => res.json())
+      .then(data => setCoin(data))
     }
     fetchCoin()
-  }, [])
+  }, [id]) //this hook fetches data about a specific coin when a user navigates to that coin's page. Dependency array [id] prevents unnecessary re-fetching unless id changes.
 
 
   const useStyles = makeStyles((theme) => ({
@@ -34,30 +35,29 @@ const Coinpage = () => {
     },
     sidebar:{
       display: "flex",
-      alignItems: 'center',
       flexDirection: "column",
       width: "30%",
       marginTop: 50,
+      padding: 15,
       borderRight: "1px solid white",
     },
 
     heading: {
       fontWeight: "bold",
       textDecoration: "underline"
-      
     },
 
     description: {
       width: "100%",
       fontFamily: "Segoe UI",
-      padding: 15,
       fontWeight: "inherit",
-      textAlign: "justify"
     }, 
+
     marketData :{
-      alignSelf: "start", 
-    // width: "100%",
-      //padding: 10,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      marginTop: "10%",
     }
   }));
 
@@ -68,7 +68,6 @@ const Coinpage = () => {
   return (
     <div className={classes.container}>
       <div className = {classes.sidebar}>
-
         <img
             src = {coin?.image.large}
             alt = {coin?.name}
@@ -79,11 +78,11 @@ const Coinpage = () => {
             {coin?.name}
         </Typography>
         <Typography variant ="span" className= {classes.description}>
-            {coin?.description.en.split(".").splice(0,2)}
+            {parse(coin?.description.en.split(". ")[0])}
         </Typography>
       
         <div className = {classes.marketData}>
-          <span style = {{display: "flex"}}>
+          <span>
             <Typography variant ="outline" className = {classes.heading}>
               Rank: &nbsp;
             </Typography>
@@ -93,7 +92,7 @@ const Coinpage = () => {
             </Typography>
           </span>
 
-          <span style = {{display: "flex"}}>
+          <span>
             <Typography variant ="outlined" className = {classes.heading}>
               Current Price: &nbsp;
             </Typography>
@@ -103,7 +102,7 @@ const Coinpage = () => {
             </Typography>
           </span>
 
-          <span style = {{display: "flex"}}>
+          <span>
             <Typography variant ="outlined" className = {classes.heading}>
               Market Cap: &nbsp;
             </Typography>

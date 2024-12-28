@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import makeStyles from '@mui/styles/makeStyles';
-import axios from 'axios';
 import {TrendingCoins} from '../../config/api'
 import { CryptoState } from '../../CryptoContext';
 import {Link} from 'react-router-dom'
@@ -44,7 +43,8 @@ const Carousel = () => {
             // setTrending(data)
             fetch(TrendingCoins(currency))
             .then(res => res.json())
-            .then(data => setTrending(data) )
+            .then(data => setTrending(data))
+            .catch(error => alert(`Error: ${error}`))
         }
 
         fetchTrendingCoins();

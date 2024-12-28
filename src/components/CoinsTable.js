@@ -49,6 +49,7 @@ export default function CoinsTable() {
 
       setLoading(true)
       const {data} = await axios.get(CoinList(currency))
+      console.log(data)
       setCoins(data)
       setLoading(false)
   
@@ -63,140 +64,147 @@ export default function CoinsTable() {
     )
   }
 
+  function percentage(total_supply, total_volume){
+      return parseInt(total_volume) / parseInt(total_supply)
+  }
+
   return (
     <ThemeProvider theme = {darkTheme}>
-        <Container style = {{textAlign: "center"}}>
-          <Typography
-            variant = "h4"
-            style = {{margin: 18, fontFamily: "Poppins"}}>
-              Cryptocurrency Prices by Market Cap
-          </Typography>
-          <TextField
-            label = "Search For a Crypto Currency.." 
-            variant = "outlined"
-            sx = {{
-              "& .MuiOutlinedInput-root": {
-                  color: "white",
-                  fontFamily: "Arial",
-                  fontWeight: "bold",
+          <Container style = {{textAlign: "center"}}>
+            <Typography
+              variant = "h4"
+              style = {{margin: 18, fontFamily: "Poppins"}}>
+                Cryptocurrency Prices by Market Cap
+            </Typography>
+            <TextField
+              label = "Search For a Crypto Currency.." 
+              variant = "outlined"
+              sx = {{
+                "& .MuiOutlinedInput-root": {
+                    color: "white",
+                    fontFamily: "Arial",
+                    fontWeight: "bold",
+                },
+                "& .MuiInputLabel-outlined": {
+                    color: "#2e2e2e",
+                    fontWeight: "bold",
               },
-              "& .MuiInputLabel-outlined": {
-                  color: "#2e2e2e",
-                  fontWeight: "bold",
-            },
-            }}
-            style = {{ textAlign: "center", width: "100%"}}
-            onChange = {(e) => setSearch(e.target.value)}
+              }}
+              style = {{ textAlign: "center", width: "100%"}}
+              onChange = {(e) => setSearch(e.target.value)}
+              
             
-          
-            />
-            <TableContainer>
-                {loading? (
-                    <LinearProgress style = {{backgroundColor: "green"}} />
-                  ):(
-                        <Table>
-                          <TableHead style = {{backgroundColor: "orange"}}>
-                              <TableRow>
-                              {["Coin", "Price", "24h Change", "Market Cap"].map((head) => (
-                                    <TableCell
-                                      style = {{
-                                        color: "black"
-                                      }}
-                                      key = {head}
-                                      //align={head === "Coin" ? "" : "right"}
-                                    >
-                                      {head}
-                                    </TableCell>
-                                  ))}
-                              </TableRow>
-                          </TableHead>
-                                  <TableBody>{handleSearch().slice((page - 1) * 10, (page - 1) * 10 + 10).map((row) => {
-                                    const profit = row.price_change_percentage_24h > 0;
+              />
+              <TableContainer>
+                  {loading? (
+                      <LinearProgress style = {{backgroundColor: "green"}} />
+                    ):(
+                          <Table>
+                            <TableHead style = {{backgroundColor: "orange"}}>
+                                <TableRow>
+                                {["Coin", "Price", "24h Change", "Market Cap", "Total Volume / Total Supply"].map((head) => (
+                                      <TableCell
+                                        style = {{
+                                          color: "black"
+                                        }}
+                                        key = {head}
+                                        //align={head === "Coin" ? "" : "right"}
+                                      >
+                                        {head}
+                                      </TableCell>
+                                    ))}
+                                </TableRow>
+                            </TableHead>
+                                    <TableBody>{handleSearch().slice((page - 1) * 10, (page - 1) * 10 + 10).map((row) => {
+                                      const profit = row.price_change_percentage_24h > 0;
 
-                                    return  (
-                                      <TableRow
-                                        onClick = {() => navigate(`/coins/${row.id}`)}
-                                        className = {classes.row}
-                                        key = {row.name}
-                                        >
-                                         <TableCell component = "th" scope = "row"
-                                            style = {{
-                                              display: "flex",
-                                              gap: 15,
-                                            }}
+                                      return  (
+                                        <TableRow
+                                          onClick = {() => navigate(`/coins/${row.id}`)}
+                                          className = {classes.row}
+                                          key = {row.name}
                                           >
-                                            <img
-                                              src = {row?.image}
-                                              alt = {row.name}
-                                              height = "50"
-                                              style = {{marginBottom: 10}}
-                                            />
-                                            <div style = {{
-                                              display:"flex",
-                                              flexDirection: "column"
-                                            }}> 
-                                              <span style = {{
-                                                width: "5px", 
-                                                color: "white"
-                                              }}>
-                                                  {row?.symbol.toUpperCase()}
-                                              </span>
-                                              <span style = {{
-                                                
-                                                width: "5px", 
-                                                color: "white"
-                                              }}>
-                                                  {row?.name}
-                                              </span>
-                                            </div> 
-                                         </TableCell>
+                                          <TableCell component = "th" scope = "row"
+                                              style = {{
+                                                display: "flex",
+                                                gap: 15,
+                                              }}
+                                            >
+                                              <img
+                                                src = {row?.image}
+                                                alt = {row.name}
+                                                height = "50"
+                                                style = {{marginBottom: 10}}
+                                              />
+                                              <div style = {{
+                                                display:"flex",
+                                                flexDirection: "column"
+                                              }}> 
+                                                <span style = {{
+                                                  width: "5px", 
+                                                  color: "white"
+                                                }}>
+                                                    {row?.symbol.toUpperCase()}
+                                                </span>
+                                                <span style = {{
+                                                  
+                                                  width: "5px", 
+                                                  color: "white"
+                                                }}>
+                                                    {row?.name}
+                                                </span>
+                                              </div> 
+                                          </TableCell>
 
-                                         <TableCell>
-                                          <div style = {{color: "white"}}>
-                                            {symbol} {numberWithCommas(row.current_price.toFixed(2))}
-                                          </div>
-                                         </TableCell>
+                                          <TableCell>
+                                            <div style = {{color: "white"}}>
+                                              {symbol} {numberWithCommas(row.current_price.toFixed(2))}
+                                            </div>
+                                          </TableCell>
 
-                                         <TableCell style = {{ color: profit > 0 ? "green" : "red"}}>
-                                          
-                                          {symbol} {numberWithCommas(row.price_change_24h.toFixed(3))}
-                                          
-                                         </TableCell>
+                                          <TableCell style = {{ color: profit > 0 ? "green" : "red"}}>
+                                            
+                                            {symbol} {numberWithCommas(row.price_change_24h.toFixed(3))}
+                                            
+                                          </TableCell>
 
-                                         <TableCell>
-                                          <div style = {{color: "white"}}>
-                                          {symbol} {numberWithCommas(row.market_cap)}
-                                          </div>
-                                         </TableCell>
+                                          <TableCell>
+                                            <div style = {{color: "white"}}>
+                                            {symbol} {numberWithCommas(row.market_cap)}
+                                            </div>
+                                          </TableCell>
+                                          <TableCell>
+                                            <div style = {{color: "white"}}>
+                                            {percentage(row.total_volume, row.total_supply)}
+                                            </div>
+                                          </TableCell>
 
-                                         
+                                        </TableRow>
+                                      )
+                                    })}
+                                    </TableBody>
+                          </Table>
+                    )
+                  }
+              </TableContainer>
 
-                                      </TableRow>
-                                    )
-                                  })}
-                                  </TableBody>
-                        </Table>
-                  )
-                }
-            </TableContainer>
+              <Pagination
+                classes= {{ul: classes.pagination}}
+                style = {{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                count = {(handleSearch()?.length / 10).toFixed(0)}
+                onChange = {(_, value) => {
+                  setPage(value)
+                  window.scroll({
+                    top: 100,
+                    behavior: "smooth",
+                  })
+                }}
+              />
 
-            <Pagination
-              classes= {{ul: classes.pagination}}
-              style = {{
-                display: "flex",
-                justifyContent: "center",
-              }}
-              count = {(handleSearch()?.length / 10).toFixed(0)}
-              onChange = {(_, value) => {
-                setPage(value)
-                window.scroll({
-                  top: 100,
-                  behavior: "smooth",
-                })
-              }}
-            />
-
-        </Container>
-    </ThemeProvider>
+          </Container>
+      </ThemeProvider>
   )
 }
